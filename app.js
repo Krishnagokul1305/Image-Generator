@@ -1,78 +1,75 @@
 
 const month=[
-        'January',
-        'February',
-        'March',
-        'April',
+        'Jan',
+        'Feb',
+        'Mar',
+        'Apr',
         'May',
         'June',
         'July',
-        'August',
-        'September',
-        'October',
-        'November',
-        'December'
+        'Aug',
+        'Sept',
+        'Oct',
+        'Nov',
+        'Dec'
 ]
-const day=[
-    'Sun',
-    'Mon',
-    'Tues',
-    'Wed',
-    'Thu',
-    'Fri',
-    'Sat'
-]
-const markup=` `
 
 
 class ImageGenerator{
-    constructor(data,parentElement){
+    constructor(searchResults,parentElement){
+      this.searchResults=[];
       this._parentElement=document.querySelector('.result-container')
       document.querySelector('#search-btn').addEventListener('click',()=>{
         this.render(this.getqurrey())
       })
     }
-    render(data){
+    async render(data){
+        this.renderSpinner()
         this._parentElement.innerHTML='';
-        const result=this.fetchApi(data)
-        console.log(result)
-       
+        const result=await this.fetchApi(data)
+        const markup=this.generateMarkup(this.searchResults)
+        this._parentElement.insertAdjacentHTML('afterbegin',markup)
     }
     getqurrey(){
         return document.querySelector('#image-qurrey').value
     }
     async fetchApi(qurey){
-        const response=await fetch(`https://api.unsplash.com/search/photos?page=3&query=${qurey}&client_id=cwAj67RC0CDx_aEw7SS0pzt93AZL9neDIP9k-8CroMI`)
+       try {const response=await fetch(`https://api.unsplash.com/search/photos?page=1&query=${qurey}&client_id=cwAj67RC0CDx_aEw7SS0pzt93AZL9neDIP9k-8CroMI`)
         const {results:data}=await response.json()
-        console.log(data)
        const results= data.map( result=> {
-        console.log(result)
+        // console.log(result)
             return {
                 description:result.alt_description,
                 imageUrl:result.urls.full,
                 date:this.getTime(result.created_at)
             }
         }); 
-        console.log(results)
+        this.searchResults=results
+        console.log(this.searchResults)}
+       catch(err){
+        console.log(err)
+       }
     }
-    generateMarkup(data){
-        return data.forEach(result => {
-            this.generatePreview
-        });
+    generateMarkup(data){ 
+        return data.map(result =>this.generatePreview(result)).join('');
     }
     generatePreview(data){
         return `<div class="col">
         <div class="card">
-            <img src="" class="card-img-top" alt="...">
+            <img src="${data.imageUrl}" class="card-img-top" alt="...">
             <div class="card-body">
-            <h5 class="card-title"></h5>
-            <p class="card-text"></p>
+            <h5 class="card-title">${data.description}</h5>
+            <p class="card-text">${data.date}</p>
             </div>
         </div>
         </div>`
     }
     renderSpinner(){
-        
+        this._parentElement.innerHTML=''
+        const markup=`<div class="spinner">
+        <img src="assets/images/Spinner@1x-1.0s-200px-200px.svg" alt="" class="mx-auto d-block">
+      </div>`
+      this._parentElement.innerHTML=markup
     }
         getTime(timestamp){
             const date=new Date(timestamp)
@@ -82,5 +79,5 @@ class ImageGenerator{
 
 const generator=new ImageGenerator()
 console.log(generator)
-generator.fetchApi("chair")
+// generator.fetchApi("chair")
 

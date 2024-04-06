@@ -19,18 +19,24 @@
         .search-results{
             min-height: 500px;
         }
+        .card img{
+            height: 300px;
+        }
+        .card-body{
+          min-height: 150px;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h2 class="text-center mt-4">Image Generator</h2>
+        <h2 class="text-center mt-4">Image Search</h2>
         <div class="search-box mx-auto mt-5 d-flex">
            <input type="text" id="image-qurrey" class="form-control" placeholder="Search for the image">
            <button class="btn btn-success" id="search-btn">Search</button>
         </div>
         <div class="search-results bg-light mt-5 p-5 mb-5">
           
-        <div class="row row-cols-1 row-cols-md-3 g-4 result-container">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 result-container">
             <!-- <div class="col">
                 <div class="card">
                     <img src="https://th.bing.com/th/id/OIP.YAXlTjvtEKchdMVc5laZhwHaE8?w=283&h=189&c=7&r=0&o=5&pid=1.7" class="card-img-top img-fluid" alt="...">
@@ -44,9 +50,7 @@
             <!--  -->
             
         </div>
-          <div class="spinner">
-            <img src="assets/images/Spinner@1x-1.0s-200px-200px.svg" alt="" class="mx-auto d-block">
-          </div>
+          
           <button class="btn btn-success mx-auto d-block visually-hidden mt-5">Load More</button>
           <!--  -->
         </div>

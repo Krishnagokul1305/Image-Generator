@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <style>
+        body{
+            background-color:  #c5d5cbc8;
+        }
+        .search-box{
+            width: 400px;
+            justify-content: space-between;
+        }
+        .search-box input{
+            width: 80%;
+        }
+        .search-results{
+            min-height: 400px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 class="text-center mt-4">Image Generator</h2>
+        <div class="search-box mx-auto mt-5 d-flex">
+           <input type="text" id="image-qurrey" class="form-control" placeholder="Search for the image">
+           <button class="btn btn-success" id="search-btn">Search</button>
+        </div>
+        <div class="search-results bg-light mt-5 p-5 mb-5">
+          
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+       
+        
+            <!--  -->
+            
+        </div>
+          
+          <button class="btn btn-success mx-auto d-block visually-hidden mt-5">Load More</button>
+          <!--  -->
+        </div>
+    </div>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.js"> </script>
+    <script src="app.js"></script>
+</body>
+</html>

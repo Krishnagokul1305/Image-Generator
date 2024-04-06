@@ -1,0 +1,13 @@
+body{
+    background-color:  #c5d5cbc8;
+}
+.search-box{
+    width: 400px;
+    justify-content: space-between;
+}
+.search-box input{
+    width: 80%;
+}
+.search-results{
+    min-height: 400px;
+}

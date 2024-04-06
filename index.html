@@ -11,10 +11,12 @@
         }
         .search-box{
             width: 400px;
-            justify-content: space-between;
+            justify-content: center;
         }
         .search-box input{
             width: 80%;
+            margin-right: 10px;
+            max-width: 500px;
         }
         .search-results{
             min-height: 500px;
@@ -25,16 +27,48 @@
         .card-body{
           min-height: 150px;
         }
+        .col{
+            cursor: pointer;
+            transition: .5s ease;
+        }
+        .col:hover{
+            opacity: .6;
+        }
+        .overlay{
+        background-color: rgba(0, 0, 0, 0.5);
+        height: 100vh;
+        width: 100vw;
+        display: none;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        }
+        .cancelbtn svg{
+            cursor: pointer;
+            transition: .5s;
+            border-radius: 50%;
+        }
+        .cancelbtn svg:hover{
+        background-color: rgba(0, 0, 0, 0.3);
+        }
+        .img{
+            height: 90%;
+            width: 100%;
+        }
+        .img img{
+            height: 50%;
+            width: 80%;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h2 class="text-center mt-4">Image Search</h2>
-        <div class="search-box mx-auto mt-5 d-flex">
+        <div class="search-box mx-auto mt-5 d-flex w-75">
            <input type="text" id="image-qurrey" class="form-control" placeholder="Search for the image">
            <button class="btn btn-success" id="search-btn">Search</button>
         </div>
-        <div class="search-results bg-light mt-5 p-5 mb-5">
+        <div class="search-results position-relative bg-light mt-5 p-5 mb-5">
           
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 result-container">
             <!-- <div class="col">
@@ -50,9 +84,18 @@
             <!--  -->
             
         </div>
-          
           <button class="btn btn-success mx-auto d-block visually-hidden mt-5">Load More</button>
           <!--  -->
+        </div>
+        <div class="overlay position-fixed ">
+            <div class="cancelbtn d-flex justify-content-end mt-3 me-3">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="white" class="bi bi-x" viewBox="0 0 16 16">
+                    <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
+                  </svg>
+            </div>
+            <div class="img d-flex justify-content-center align-items-center">
+                <img src="" alt="" id="overlayImg">
+            </div>
         </div>
     </div>
     <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.js"> </script>
